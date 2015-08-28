@@ -9,8 +9,10 @@ class ChoiceInline(admin.TabularInline):
     extra = 3
 
 class QuestionAdmin(admin.ModelAdmin):
-    fields = ['question_text', 'pub_Date']
+    list_display = ['question_text', 'pub_date', 'was_published_recently']
     inlines = [ChoiceInline]
+    list_filter = ['pub_date']
+    search_field = ['question_text']
 
 admin.site.register(Question, QuestionAdmin)
 admin.site.register(Choice)
